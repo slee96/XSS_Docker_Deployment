@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    image: workshop-nginx:latest
+    depends_on:
+      - php
+      - mysql
+    ports:
+      - 80:80
+    networks:
+      - xss
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+      args:
+        IPADDRESS: '192.168.2.189'
+    image: workshop-php:latest
+    networks:
+      xss:
+        aliases:
+          - php_net
+
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    image: workshop-mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: iss
+    networks:
+      xss:
+        aliases:
+          - mysql_net
+
+networks:
+  xss:

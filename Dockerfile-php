@@ -1,0 +1,17 @@
+FROM php:7.2-fpm
+
+WORKDIR /var/www/html
+
+RUN docker-php-ext-install mysqli; \
+	sed -i 's/^;.*extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini-development; \
+	rm /etc/localtime; \
+	ln -s /usr/share/zoneinfo/Canada/Eastern /etc/localtime; \
+	ln -s /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini; \
+	apt-get update && apt-get install -y git; \
+	cd /var/www/html; \
+	git clone https://github.com/slee96/SQL-Injection-XSS-scripting-examples.git; \
+	mv SQL-Injection-XSS-scripting-examples/travel.cmdctrl.ca/* .; \
+	rm -rf SQL-Injection-XSS-scripting-examples; \
+	sed -i 's/travel.cmdctrl.ca/'$IPADDRESS'/g' securesession.php;
+	
+	

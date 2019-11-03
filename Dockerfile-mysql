@@ -1,0 +1,9 @@
+FROM mysql:5.7
+
+ADD ["sources.sql", "/docker-entrypoint-initdb.d"]
+
+#RUN /etc/init.d/mysql start; \
+#	mysql -u root -ptoor -e "CREATE DATABASE iss"; \
+#	mysql -u root -ptoor -D iss < /docker-entrypoint-initdb.d/sources.sql
+
+CMD ["mysqld"]
