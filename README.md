@@ -14,6 +14,10 @@
   Change working directory \
   **$** `cd XSS_Docker_Deployment/`
 
+  #### STEP 2:
+  Modify the docker-compose file with your host's IP address, change YOUR_IP_ADDRESS to your IP address \
+  **$** `sed -i 's/localhost/YOUR_IP_ADDRESS/g` docker-compose.yml
+
   #### STEP 3:
   Deploy the project \
   **$** `docker-compose up -d --build`
