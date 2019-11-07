@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: Dockerfile-php
       args:
-        IPADDRESS: '192.168.2.189'
+        IPADDRESS: 'localhost'
     image: workshop-php:latest
     networks:
       xss:
