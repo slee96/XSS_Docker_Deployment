@@ -30,8 +30,5 @@
 
 * **Spencer Lee** - *Initial work* - [slee96](https://github.com/slee96)
 
-## Acknowledgments
-* Quality testing, Louai
-
 
 
